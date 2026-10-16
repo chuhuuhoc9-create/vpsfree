@@ -156,7 +156,11 @@ def main():
             index = int(stt_mem) - 1
             user = members[index]
             print(f"👉 Đang gửi cho: {user['name']} ({user['id']})")
-            tag_user_from_nhay(bot, user['id'], group_id, user['name'], delay, session_cookies)
+            
+            # ĐÃ ĐƯỢC SỬA LỖI TẠI ĐÂY: Tạo stop_event và truyền đầy đủ 8 tham số cho hàm
+            stop_event = threading.Event()
+            tag_user_from_nhay(bot, user['id'], group_id, user['name'], delay, imei, session_cookies, stop_event)
+            
         except Exception as e:
             print(f"❌ Lỗi chọn người: {e}")
 
